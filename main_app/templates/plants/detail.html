@@ -10,7 +10,11 @@
         <p>Water Intake: {{ plant.water }}</p>
         <p>Soil: {{ plant.soil }}</p>
         <p>Color: {{ plant.color }}</p>
-    </div>     
+    </div>
+    <div class="card-action">
+        <a href="{% url 'plant_update' plant.id %}">Edit</a>
+        <a href="{% url 'plant_delete' plant.id %}">Delete</a>
+    </div>
 </div>
 
 {% endblock %}
