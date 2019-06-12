@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Plant
+from .forms import WateringForm
 
 # Create your views here.
 def home(request):
@@ -15,7 +16,16 @@ def plants_index(request):
 
 def plants_detail(request, plant_id):
     plant = Plant.objects.get(id=plant_id)
-    return render(request, 'plants/detail.html', {'plant': plant})
+    watering_form = WateringForm()
+    return render(request, 'plants/detail.html', {'plant': plant, 'watering_form': watering_form})
+
+def add_watering(request, plant_id):
+    form = WateringForm(request.POST)
+    if form.is_valid():
+        new_watering = form.save(commit=False)
+        new_watering.plant_id = plant_id
+        new_watering.save()
+    return redirect('detail', plant_id=plant_id)
 
 class PlantCreate(CreateView):
     model = Plant
