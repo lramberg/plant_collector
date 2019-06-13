@@ -7,12 +7,23 @@ WATERED = (
     ('O', 'Without Plant Food')
 )
 
+class Accessory(models.Model):
+    name = models.CharField(max_length=100)
+    color = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('accessories_detail', kwargs={'pk': self.id})
+
 class Plant(models.Model):
     name = models.CharField(max_length=100)
     sun = models.CharField(max_length=100)
     water = models.CharField(max_length=100)
     soil = models.CharField(max_length=100)
     color = models.CharField(max_length=100)
+    accessories = models.ManyToManyField(Accessory)
 
     def __str__(self):
         return self.name 
