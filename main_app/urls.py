@@ -16,4 +16,6 @@ urlpatterns = [
     path('accessories/<int:pk>/update/', views.AccessoryUpdate.as_view(), name='accessories_update'),
     path('accessories/<int:pk>/delete/', views.AccessoryDelete.as_view(), name='accessories_delete'),
     path('plants/<int:plant_id>/assoc_access/<int:accessory_id>/', views.assoc_access, name='assoc_access'),
+    path('plants/<int:plant_id>/unassoc_access/<int:accessory_id>/', views.unassoc_access, name='unassoc_access'),
+    path('plants/<int:plant_id>/add_photo/', views.add_photo, name='add_photo'),
 ]
