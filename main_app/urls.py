@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -18,4 +18,6 @@ urlpatterns = [
     path('plants/<int:plant_id>/assoc_access/<int:accessory_id>/', views.assoc_access, name='assoc_access'),
     path('plants/<int:plant_id>/unassoc_access/<int:accessory_id>/', views.unassoc_access, name='unassoc_access'),
     path('plants/<int:plant_id>/add_photo/', views.add_photo, name='add_photo'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup', views.signup, name='signup'),
 ]

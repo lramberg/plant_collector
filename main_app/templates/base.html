@@ -20,10 +20,16 @@
                 </ul>
                 <ul class="right">
                     <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'accessories_create' %}">Add An Accessory</a></li>
-                    <li><a href="{% url 'accessories_index' %}">View Accessories</a></li>
-                    <li><a href="{% url 'plant_create' %}">Add A Plant</a></li>
-                    <li><a href="{% url 'index' %}">View My Plants</a></li>
+                    {% if user.is_authenticated %}
+                      <li><a href="{% url 'accessories_create' %}">Add an Accessory</a></li>
+                      <li><a href="{% url 'accessories_index' %}">View All Accessoriess</a></li>
+                      <li><a href="{% url 'plant_create' %}">Add a Plant</a></li>
+                      <li><a href="{% url 'index' %}">View All My Plants</a></li>
+                      <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    {% else %}
+                      <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                      <li><a href="{% url 'login' %}">Log In</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
